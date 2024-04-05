@@ -1,12 +1,10 @@
 package com.eustrosoft.util;
 
 import com.eustrosoft.FileDetails;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 import java.io.PrintWriter;
-import java.io.UnsupportedEncodingException;
-import java.net.URLEncoder;
 import java.util.Arrays;
 
 import static com.eustrosoft.FtpDao.SEPARATOR;
@@ -67,7 +65,7 @@ public final class HttpUtil {
     }
 
     public static void setHeadersForFileDownload(HttpServletResponse response, FileDetails fileDetails) {
-        response.reset();
+        response.reset(); //SIC! to thing about (some header has been set before)
         setFileContentType(response, fileDetails.getMimeType());
         response.setCharacterEncoding(fileDetails.getEncoding());
         response.setHeader(
